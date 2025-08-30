@@ -21,7 +21,7 @@ function Calcular(){
 function Memorizar(){
     let ultimoResultado = document.getElementById('resultado').innerHTML;
     let resultados = document.getElementById('resultados');
-    if(ultimoResultado !== "" && ultimoResultado !== 'Operación inválida' && !resultados.innerHTML.includes('<li>${ultimoResultado}</li>')){
+    if(ultimoResultado !== '' && ultimoResultado !== 'Operación inválida' && !resultados.innerHTML.includes('<li>${ultimoResultado}</li>')){
         resultados.innerHTML += '<li>${ultimoResultado}</li>';
     }
 }
