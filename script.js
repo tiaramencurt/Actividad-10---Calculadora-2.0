@@ -6,3 +6,7 @@ function BorrarUltimo(){
     let operacion = document.getElementById('operacion');
     operacion.innerHTML = operacion.innerHTML.slice(0, -1);
 }
+function Calcular(){
+    const operacion = document.getElementById('operacion');
+    
+}
