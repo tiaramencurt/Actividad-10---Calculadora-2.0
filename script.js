@@ -21,17 +21,17 @@ function Calcular(){
 function Memorizar(){
     let ultimoResultado = document.getElementById('resultado').innerHTML;
     let resultados = document.getElementById('resultados');
-    if(ultimoResultado !== '' && ultimoResultado !== 'Operación inválida' && !resultados.innerHTML.includes('<li>${ultimoResultado}</li>')){
-        resultados.innerHTML += '<li>${ultimoResultado}</li>';
+    if(ultimoResultado !== '' && ultimoResultado !== 'Operación inválida' && !resultados.innerHTML.includes(`<li>${ultimoResultado}</li>`)){
+        resultados.innerHTML += `<li>${ultimoResultado}</li>`;
     }
 }
 function EscribirMemoria(){
     let lista = document.getElementById('resultados');
     let operacion = document.getElementById('operacion');
-    if(resultados.innerHTML !== ''){
+    if(lista.innerHTML !== ''){
         let resultados = lista.innerHTML.split('</li>');
         let ultimoResultado = resultados[resultados.length - 2];//no funcionaba con 1
         ultimoResultado = ultimoResultado.replace('<li>', '');
-        operacion.innerHTML += ultimo;
+        operacion.innerHTML += ultimoResultado;
     }
 }
