@@ -27,11 +27,12 @@
         <button value="-" onclick="Escribir('-')">−</button>
         <button value="*" onclick="Escribir('*')">×</button>
         <button value="/" onclick="Escribir('/')">÷</button>
-        <button value="M+">M+</button>
-        <button value="M">M</button>
+        <button value="M+" onclick="Memorizar()">M+</button>
+        <button value="M" onclick="EscribirMemoria()">M</button>
         <button onclick="BorrarUltimo()"><=</button>
         <button onclick="Calcular()">=</button>
         <h1 id="resultado"></h1>
+        <ul id="resultados"></ul>
     </main>
     <footer>
         © MIDEMA
