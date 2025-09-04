@@ -1,48 +1,61 @@
 let operadores = ['+', '-', '*', '/'];
 let ListaNumeros = [];
-let ListaOperadores = [];
+let operador = null;
 function EscribirNumero(valor){
     const operacion = document.getElementById('operacion');
-    if(operadores.includes(operacion.innerHTML[operacion.innerHTML.lenght - 1]))
+    console.log(valor);
+    if(operadores.includes(operacion.innerHTML[operacion.innerHTML.lenght - 1]) || operacion.innerHTML === '')
     {
         ListaNumeros.push(valor);
     }else
     {
-        ListaNumeros[ListaNumros.lenght-1] += valor;
+        ListaNumeros[ListaNumeros.lenght-1] += valor;
     }
     operacion.innerHTML += valor;
 }
 function EscribirOperador(valor){
     const operacion = document.getElementById('operacion');
-    if(!(operadores.includes(operacion.innerHTML[operacion.innerHTML.lenght - 1])))
+    if(operador === null)
     {
-        if(ListaOperadores.length < 1)
+        operador = valor;
+        operacion.innerHTML += valor;
+    }else
+    {
+        let resultado = Calcular();
+        ListaNumeros = [resultado];
+        operador = valor;
+        operacion.innerHTML = resultado + valor;
+    }
+}
+
+function Calcular(){
+    if(ListaNumeros.length == 2)
+    {
+        if(operador === '+')
         {
-            ListaOperadores.push(valor);
-            operacion.innerHTML += valor;
-        }else
+            resultado = ListaNumeros[0] + ListaNumeros[1];
+        }else if(operador === '-')
         {
-            Calcular();
-            
+            resultado = ListaNumeros[0] - ListaNumeros[1];
+        }else if(operador === '*')
+        {
+            resultado = ListaNumeros[0] * ListaNumeros[1];
+        }else if(operador === '/')
+        {
+            resultado = ListaNumeros[0] / ListaNumeros[1];
         }
     }
+    resultado = null;
+    const resultHTML = document.getElementById('resultado');
+    resultHTML.innerHTML = resultado;
+    console.log(resultado);
+    console.log(ListaNumeros.length);
+    return resultado;
 }
 function BorrarUltimo(){
     let operacion = document.getElementById('operacion');
     operacion.innerHTML = operacion.innerHTML.slice(0, -1);
     ListaElementos.pop();
-}
-function Calcular(){
-    let expresion = document.getElementById('operacion').innerHTML;
-    let primerosUltimos = ['+', '-', '*', '/'];
-    if(primerosUltimos.includes(expresion[0]) || primerosUltimos.includes(expresion[expresion.length - 1])){
-        document.getElementById('resultado').innerHTML = 'Operación inválida';
-    }
-    for(let i = 0; i < expresion.length - 1; i++){
-        if(primerosUltimos.includes(expresion[i]) && primerosUltimos.includes(expresion[i+1])){
-            document.getElementById('resultado').innerHTML = 'Operación inválida';
-        }
-    }
 }
 function Memorizar(){
     let ultimoResultado = document.getElementById('resultado').innerHTML;
