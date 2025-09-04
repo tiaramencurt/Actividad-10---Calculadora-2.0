@@ -49,7 +49,7 @@ function Calcular(){
     const resultHTML = document.getElementById('resultado');
     resultHTML.innerHTML = resultado;
     console.log(resultado);
-    console.log(ListaNumeros.length);
+    console.log(ListaNumeros); // con 0 + 1 aparece 
     return resultado;
 }
 function BorrarUltimo(){
