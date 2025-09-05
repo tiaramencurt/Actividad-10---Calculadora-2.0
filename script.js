@@ -15,20 +15,18 @@ function EscribirNumero(valor){
 }
 function EscribirOperador(valor){
     const operacion = document.getElementById('operacion');
-    if(operador === null && operacion.innerHTML !== '')
-    {
+    if(operador === null && operacion.innerHTML !== ''){
         operador = valor;
         operacion.innerHTML += valor;
-    }else
-    {
+    }else{
         let resultado = Calcular();
-        if(resultado !== null)
-            {
-                resultado = Calcular().toString();
-                ListaNumeros = [resultado];
-                operador = valor;
-                operacion.innerHTML = resultado + valor;
-            }
+        if(resultado !== null && resultado !== 'Sin definir')
+        {
+            resultado = resultado.toString();
+            ListaNumeros = [resultado];
+            operador = valor;
+            operacion.innerHTML = resultado + valor;
+        }
     }
 }
 
@@ -52,7 +50,7 @@ function Calcular(){
                     resultado = parseFloat(ListaNumeros[0]) / parseFloat(ListaNumeros[1]);
                 }else
                     {
-                        //Hay que fijarse que hacer cuando es 0
+                        resultado = 'Sin definir';
                     }
         }
     }
@@ -85,13 +83,12 @@ function BorrarUltimo(){
 function Memorizar(){
     let ultimoResultado = document.getElementById('resultado').innerHTML;
     let resultados = document.getElementById('resultados');
-    if(ultimoResultado !== '' && !resultados.innerHTML.includes(`<li>${ultimoResultado}</li>`)){
+    if(ultimoResultado !== '' && ultimoResultado !== 'Sin definir' && !resultados.innerHTML.includes(`<li>${ultimoResultado}</li>`)){
         resultados.innerHTML += `<li>${ultimoResultado}</li>`;
     }
 }
 function EscribirMemoria(){//No funciona cuando la ultima memoria es un numero negativo, o sea funciona pero depsués lo demás no
     let lista = document.getElementById('resultados');
-    let operacion = document.getElementById('operacion');
     if(lista.innerHTML !== ''){
         let resultados = lista.innerHTML.split('</li>');
         let ultimoResultado = resultados[resultados.length - 2];//Hay que poner -2 en lugar de -1 porque como termina en 
