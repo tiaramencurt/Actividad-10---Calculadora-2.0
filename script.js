@@ -3,13 +3,13 @@ let ListaNumeros = [];
 let operador = null;
 function EscribirNumero(valor){
     const operacion = document.getElementById('operacion');
-    console.log(valor);
-    if(operadores.includes(operacion.innerHTML[operacion.innerHTML.lenght - 1]) || operacion.innerHTML === '')
+    console.log("Valor que llegó: " + valor);
+    if(operadores.includes(operacion.innerHTML[operacion.innerHTML.length - 1]) || operacion.innerHTML === '')
     {
-        ListaNumeros.push(valor);
+        ListaNumeros.push(toString(valor));
     }else
     {
-        ListaNumeros[ListaNumeros.lenght-1] += valor;
+        ListaNumeros[ListaNumeros.length-1] += toString(valor);
     }
     operacion.innerHTML += valor;
 }
@@ -29,33 +29,39 @@ function EscribirOperador(valor){
 }
 
 function Calcular(){
+    resultado = null;
     if(ListaNumeros.length == 2)
     {
         if(operador === '+')
         {
-            resultado = ListaNumeros[0] + ListaNumeros[1];
+            resultado = parseFloat(ListaNumeros[0]) + parseFloat(ListaNumeros[1]);
         }else if(operador === '-')
         {
-            resultado = ListaNumeros[0] - ListaNumeros[1];
+            resultado = parseFloat(ListaNumeros[0]) - parseFloat(ListaNumeros[1]);
         }else if(operador === '*')
         {
-            resultado = ListaNumeros[0] * ListaNumeros[1];
+            resultado = parseFloat(ListaNumeros[0]) * parseFloat(ListaNumeros[1]);
         }else if(operador === '/')
         {
-            resultado = ListaNumeros[0] / ListaNumeros[1];
+            if(parseFloat(ListaNumeros[1]) !== 0)
+                {
+                    resultado = parseFloat(ListaNumeros[0]) / parseFloat(ListaNumeros[1]);
+                }else
+                    {
+                        //Hay que fijarse que hacer cuando es 0
+                    }
         }
     }
-    resultado = null;
     const resultHTML = document.getElementById('resultado');
     resultHTML.innerHTML = resultado;
-    console.log(resultado);
-    console.log(ListaNumeros); // con 0 + 1 aparece 
-    return resultado;
+    console.log("Resultado:" + resultado);
+    console.log(ListaNumeros);
+    return toString(resultado);
 }
 function BorrarUltimo(){
     let operacion = document.getElementById('operacion');
     operacion.innerHTML = operacion.innerHTML.slice(0, -1);
-    ListaElementos.pop();
+    ListaNumeros[ListaNumeros.length].slice(0, -1);
 }
 function Memorizar(){
     let ultimoResultado = document.getElementById('resultado').innerHTML;
